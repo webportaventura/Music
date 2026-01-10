@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>The Warmth Of Christmas</title>
+
+<style>
+body {
+  background:#111;
+  color:#eee;
+  font-family:Arial;
+  text-align:center;
+}
+.album {
+  max-width:500px;
+  margin:auto;
+}
+.cover {
+  width:100%;
+  border-radius:10px;
+}
+.track {
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  padding:8px;
+  border-bottom:1px solid #333;
+}
+.track img {
+  width:40px;
+  margin-right:10px;
+}
+.track:hover {
+  background:#222;
+}
+audio {
+  width:100%;
+  margin-top:15px;
+}
+a.download {
+  color:#0b84ff;
+  display:block;
+  margin-top:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="album">
+<h1>The Warmth Of Christmas</h1>
+<img class="cover" src="../img/portadaWarmthOfChristmas.png">
+
+<audio id="player" controls></audio>
+<a id="download" class="download" href="" download>Descargar canción</a>
+
+<div class="track" onclick="play('01._So_This_Is_Christmas.MP3')">
+  <img src="../img/portadaWarmthOfChristmas.png"> So This Is Christmas
+</div>
+
+<div class="track" onclick="play('02._The_Warmth_Of_Christmas.MP3')">
+  <img src="../img/portadaWarmthOfChristmas.png"> The Warmth Of Christmas
+</div>
+
+</div>
+
+<script>
+function play(file){
+  const player = document.getElementById('player');
+  player.src = "../audio/Warmth Of Christmas/" + file;
+  player.play();
+  document.getElementById('download').href = player.src;
+}
+</script>
+
+</body>
+</html>
