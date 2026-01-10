@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <title>The Warmth Of Christmas</title>
 
 <style>
@@ -75,3 +76,4 @@ function play(file){
 
 </body>
 </html>
+
