@@ -23,8 +23,24 @@ body {
   
 .cover {
   width:100%;
+  max-width:500px;
   border-radius:10px;
 }
+
+/* Tablets */
+@media (min-width: 600px) {
+  .cover {
+    max-width:400px;
+  }
+}
+
+/* Ordenadores */
+@media (min-width: 1024px) {
+  .cover {
+    max-width:300px;
+  }
+}
+
   
 .track {
   display:flex;
