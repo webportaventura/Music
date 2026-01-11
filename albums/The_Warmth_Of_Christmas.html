@@ -70,9 +70,63 @@ a.download {
 }
 
   .album-title {
-  font-size: 75%; /* 20% más pequeño */
+  font-size: 85%; /* 20% más pequeño */
   margin-top: 10px;
 }
+
+/* MINI‑PLAYER ESTILO SPOTIFY */
+#floating-player {
+  position: fixed;
+  bottom: -120px; /* oculto inicialmente */
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #3a2b2b);
+  backdrop-filter: blur(12px);
+  padding: 12px;
+  box-shadow: 0 -2px 15px rgba(0,0,0,0.6);
+  transition: bottom 0.35s ease;
+  z-index: 999;
+}
+
+.fp-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#fp-cover {
+  width: 55px;
+  height: 55px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.fp-text {
+  flex: 1;
+  text-align: left;
+  font-size: 14px;
+}
+
+#fp-title {
+  font-weight: bold;
+  color: #fff;
+}
+
+#fp-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+#floating-player audio {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 6px;
+}
+
   
 </style>
   
@@ -87,8 +141,7 @@ a.download {
 <img class="cover" src="../img/portadaWarmthOfChristmas.png">
 
 <h1 class="album-title">The Warmth Of Christmas</h1>
-
-<audio id="player" controls></audio>
+  
 
 <!-- CANCIÓN 1 --> 
 <div class="track"> 
@@ -120,10 +173,44 @@ Descargar
 <script>
 function play(file){
   const player = document.getElementById('player');
+  const bar = document.getElementById('floating-player');
+  const title = document.getElementById('fp-title');
+  const cover = document.getElementById('fp-cover');
+
+  // Actualiza audio
   player.src = "../audio/Warmth_Of_Christmas/" + file;
   player.play();
+
+  // Actualiza título
+  const cleanTitle = file
+    .replace(".MP3","")
+    .replace(/[_\.]/g," ")
+    .trim();
+  title.textContent = cleanTitle;
+
+  // Muestra el mini-player con animación
+  bar.style.bottom = "0";
 }
+  function closePlayer(){
+  const bar = document.getElementById('floating-player');
+  const player = document.getElementById('player');
+
+  player.pause();
+  bar.style.bottom = "-120px";
+}
+
 </script>
+  
+<div id="floating-player">
+  <div class="fp-content">
+    <img id="fp-cover" src="../img/portadaWarmthOfChristmas.png">
+    <div class="fp-text">
+      <div id="fp-title">Reproduciendo...</div>
+    </div>
+    <button id="fp-close" onclick="closePlayer()">✕</button>
+  </div>
+  <audio id="player" controls></audio>
+</div>
 
 </body>
 </html>
