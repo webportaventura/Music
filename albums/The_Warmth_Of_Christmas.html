@@ -1,60 +1,93 @@
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Warmth Of Christmas</title>
-
-<!-- Fuente Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-/* ============================
-   FONDO GLOBAL DINÁMICO OSCURO
-   ============================ */
 body {
   margin:0;
   padding:0;
-  font-family:'Inter', sans-serif;
+  font-family:'Montserrat', sans-serif;
   color:white;
-  background:
-    radial-gradient(circle at top, rgba(60,25,25,0.55), rgba(20,10,10,0.95)),
-    linear-gradient(135deg, rgba(50,20,20,0.8), rgba(10,5,5,1));
-  background-blend-mode:multiply;
+  background:linear-gradient(to bottom,
+    rgba(120,40,40,0.55),
+    rgba(40,15,15,0.85),
+    rgba(15,8,8,1)
+  );
   background-attachment:fixed;
 }
 
-/* ============================
-   PORTADA + TÍTULO ÁLBUM
-   ============================ */
+/* PORTADA + INFO ÁLBUM */
 .album {
   max-width:90%;
-  margin:auto;
-  padding:20px 10px;
-  text-align:center;
+  margin:20px auto 10px auto;
+  padding:0;
 }
 
 .cover {
   width:100%;
   max-width:310px;
   border-radius:12px;
+  display:block;
+  margin:auto;
+  box-shadow:0 18px 38px rgba(0,0,0,0.55);
+}
+
+.album-info {
+  margin-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  background:transparent;
+}
+
+.album-text {
+  text-align:left;
 }
 
 .album-title {
-  font-size:130%;
-  margin-top:12px;
-  font-weight:600;
+  font-size:150%;
+  font-weight:700;
+  margin-bottom:6px;
 }
 
-/* ============================
-   LISTADO DE CANCIONES
-   ============================ */
+.album-year {
+  font-size:90%;
+  color:white;
+  margin-bottom:4px;
+}
+
+.album-count {
+  font-size:90%;
+  color:#ccc;
+}
+
+/* BOTÓN REPRODUCIR TODO */
+.playall-btn {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:40px;
+  border:none;
+  cursor:pointer;
+  color:white;
+  font-weight:600;
+  font-size:90%;
+  background:linear-gradient(135deg, #552222, #221111);
+  box-shadow:0 6px 14px rgba(0,0,0,0.45);
+}
+
+.playall-btn svg {
+  width:20px;
+  height:20px;
+  fill:white;
+}
+
+/* LISTADO DE CANCIONES */
 .track {
   display:flex;
   align-items:center;
   padding:8px 8px;
-  margin:6px auto;
-  width:65%;
-  min-width:350px;
-  border-radius:0; /* SIN REDONDEO */
+  margin:10px auto;
+  width:60%;
+  min-width:340px;
+  border-radius:0;
   cursor:pointer;
   border:1px solid rgba(255,255,255,0.08);
   background:linear-gradient(
@@ -64,11 +97,10 @@ body {
   );
 }
 
-
 .track:hover {
   background:linear-gradient(
     to bottom,
-    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.03),
     rgba(255,255,255,0.15)
   );
 }
@@ -85,17 +117,30 @@ body {
   height:55px;
   border-radius:6px;
   object-fit:cover;
+  box-shadow:0 6px 14px rgba(0,0,0,0.55);
 }
 
 .track-title {
   font-weight:600;
-  font-size:90%;
+  font-size:95%;
+  margin-bottom:4px;
 }
 
-/* Botón descarga */
+.track-sub {
+  font-size:80%;
+  color:#ccc;
+}
+
+.track-duration {
+  font-size:80%;
+  color:white;
+  margin-right:10px;
+}
+
+/* BOTÓN DESCARGA A */
 .download-btn {
-  width:32px;
-  height:32px;
+  width:36px;
+  height:36px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -105,14 +150,14 @@ body {
 }
 
 .download-btn svg {
-  width:20px;
-  height:20px;
-  fill:white;
+  width:26px;
+  height:26px;
+  stroke:white;
+  stroke-width:2;
+  fill:none;
 }
 
-/* ============================
-   MINI‑PLAYER
-   ============================ */
+/* MINI‑PLAYER */
 #floating-player {
   position:fixed;
   bottom:-200px;
@@ -127,7 +172,6 @@ body {
   z-index:999;
 }
 
-/* Flecha colapso centrada */
 #fp-collapse {
   background:transparent;
   border:none;
@@ -140,15 +184,6 @@ body {
   display:none;
 }
 
-#fp-collapse svg {
-  width:26px;
-  height:26px;
-  stroke:white;
-  stroke-width:2;
-  fill:none;
-}
-
-/* Botón cerrar */
 #fp-close {
   position:absolute;
   right:8px;
@@ -160,7 +195,6 @@ body {
   cursor:pointer;
 }
 
-/* Contenido mini-player */
 .fp-content {
   display:flex;
   align-items:center;
@@ -168,12 +202,12 @@ body {
   margin-top:20px;
 }
 
-/* Portada mini-player (+20%) */
 #fp-cover {
-  width:66px;   /* antes 55px */
+  width:66px;
   height:66px;
   border-radius:8px;
   object-fit:cover;
+  box-shadow:0 6px 14px rgba(0,0,0,0.55);
 }
 
 .fp-text {
@@ -182,15 +216,25 @@ body {
 }
 
 #fp-title {
-  font-weight:600;
-  font-size:15px;
+  font-weight:700;
+  font-size:16px;
+  margin-bottom:4px;
 }
 
-/* Controles */
+.fp-sub1,
+.fp-sub2,
+.fp-sub3 {
+  font-size:80%;
+  color:#ccc;
+  margin-bottom:2px;
+}
+
+/* CONTROLES */
 .fp-controls-row {
   display:flex;
   justify-content:center;
-  gap:24px;
+  align-items:center;
+  gap:26px;
   margin-top:12px;
 }
 
@@ -201,20 +245,37 @@ body {
 }
 
 .fp-btn svg {
-  width:24px;
-  height:24px;
+  width:26px;
+  height:26px;
   fill:white;
   opacity:0.9;
 }
 
 .fp-btn.toggle.active svg {
   fill:#ffd966;
-  stroke:#ffd966; /* para iconos que usan stroke (aleatorio) */
+  stroke:#ffd966;
   opacity:1;
 }
 
+/* PLAY CON CÍRCULO OSCURO */
+.fp-play-circle {
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg, #331515, #110707);
+  box-shadow:0 6px 14px rgba(0,0,0,0.55);
+}
 
-/* Barra progreso */
+.fp-play-circle svg {
+  width:28px;
+  height:28px;
+  fill:white;
+}
+
+/* PROGRESO */
 #fp-progress-container {
   width:100%;
   height:8px;
@@ -242,11 +303,9 @@ body {
   border-radius:50%;
 }
 
-/* ============================
-   MODO EXPANDIDO
-   ============================ */
+/* EXPANDIDO */
 #floating-player.expanded {
-  height:70vh;
+  height:78vh;
   border-radius:20px 20px 0 0;
   padding-top:40px;
 }
@@ -261,11 +320,14 @@ body {
   text-align:center;
 }
 
-/* Portada expandida (+40%) */
 #floating-player.expanded #fp-cover {
-  width:224px;  /* 160px * 1.4 */
-  height:224px;
+  width:240px;
+  height:240px;
   margin-bottom:10px;
+}
+
+#floating-player.expanded .fp-text {
+  text-align:center;
 }
 
 #floating-player.expanded .fp-controls-row {
@@ -276,28 +338,10 @@ body {
   margin-top:20px;
 }
 
-/* Animaciones título */
-.fp-title-exit-left { animation:exitLeft .35s forwards; }
-.fp-title-enter-left { animation:enterLeft .35s forwards; }
-.fp-title-exit-right { animation:exitRight .35s forwards; }
-.fp-title-enter-right { animation:enterRight .35s forwards; }
-
-@keyframes exitLeft { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(-30px);} }
-@keyframes enterLeft { from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);} }
-@keyframes exitRight { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(30px);} }
-@keyframes enterRight { from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);} }
-
-   .bottom-spacer {
-  height: 260px; /* aprox. altura de 3 canciones */
+.bottom-spacer {
+  height:260px;
 }
-
 </style>
-</head>
-
-
-
-
-
 
 
 
@@ -308,27 +352,57 @@ body {
 
 <div class="album">
   <img class="cover" src="../img/portadaWarmthOfChristmas.png">
-  <h1 class="album-title">The Warmth Of Christmas</h1>
+
+  <div class="album-info">
+    <div class="album-text">
+      <div class="album-title">The Warmth Of Christmas</div>
+      <div class="album-year">2025</div>
+      <div class="album-count">8 canciones</div>
+    </div>
+
+    <button id="play-all" class="playall-btn">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      Reproducir todo
+    </button>
+  </div>
 </div>
 
-<!-- LISTADO DE CANCIONES -->
+<!-- LISTADO -->
 <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaWarmthOfChristmas.png">
   <div class="track-info">
     <img src="../img/portadaWarmthOfChristmas.png">
-    <div class="track-title">So This Is Christmas</div>
+    <div>
+      <div class="track-title">So This Is Christmas</div>
+      <div class="track-sub">Contiene: 1</div>
+    </div>
   </div>
+
+  <div class="track-duration">00:00</div>
+
   <button class="download-btn" onclick="event.stopPropagation()">
-    <svg viewBox="0 0 24 24"><path d="M12 3v12l4-4 1 1-6 6-6-6 1-1 4 4V3z"/></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5 19h14" stroke-linecap="round"/>
+    </svg>
   </button>
 </div>
 
 <div class="track" data-file="02.%20The%20Warmth%20Of%20Christmas.MP3" data-cover="../img/portadaWarmthOfChristmas.png">
   <div class="track-info">
     <img src="../img/portadaWarmthOfChristmas.png">
-    <div class="track-title">The Warmth Of Christmas</div>
+    <div>
+      <div class="track-title">The Warmth Of Christmas</div>
+      <div class="track-sub">Contiene: 2</div>
+    </div>
   </div>
+
+  <div class="track-duration">00:00</div>
+
   <button class="download-btn" onclick="event.stopPropagation()">
-    <svg viewBox="0 0 24 24"><path d="M12 3v12l4-4 1 1-6 6-6-6 1-1 4 4V3z"/></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5 19h14" stroke-linecap="round"/>
+    </svg>
   </button>
 </div>
 
@@ -345,18 +419,30 @@ body {
 
   <div class="fp-content">
     <img id="fp-cover" src="../img/portadaWarmthOfChristmas.png">
+
     <div class="fp-text">
       <div id="fp-title">Reproduciendo...</div>
+      <div class="fp-sub1">Álbum: The Warmth Of Christmas (2025)</div>
+      <div class="fp-sub2"></div>
+      <div class="fp-sub3"></div>
     </div>
   </div>
 
   <div class="fp-controls-row">
 
+    <button id="fp-shuffle" class="fp-btn toggle">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 4c5 0 7 5 10 10s5 6 6 6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M20 4l-4 4 4 4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M4 20l4-4-4-4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </button>
+
     <button id="fp-prev" class="fp-btn">
       <svg viewBox="0 0 24 24"><path d="M6 5v14h2V5H6zm3 7l8 7V5l-8 7z"/></svg>
     </button>
 
-    <button id="fp-play" class="fp-btn">
+    <button id="fp-play" class="fp-btn fp-play-circle">
       <svg id="fp-play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
     </button>
 
@@ -364,22 +450,9 @@ body {
       <svg viewBox="0 0 24 24"><path d="M16 5v14h-2V5h2zM6 5v14l8-7L6 5z"/></svg>
     </button>
 
-    <!-- Repetir -->
     <button id="fp-repeat" class="fp-btn toggle">
       <svg viewBox="0 0 24 24">
         <path d="M7 7h9v2l3-3-3-3v2H6a3 3 0 0 0-3 3v4h2V8a1 1 0 0 1 1-1zm10 10H8v-2l-3 3 3 3v-2h10a3 3 0 0 0 3-3v-4h-2v4a1 1 0 0 1-1 1z"/>
-      </svg>
-    </button>
-
-    <!-- Aleatorio D2 -->
-    <button id="fp-shuffle" class="fp-btn toggle">
-      <svg viewBox="0 0 24 24">
-        <path d="M4 4c5 0 7 5 10 10s5 6 6 6"
-              stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M20 4l-4 4 4 4"
-              stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M4 20l4-4-4-4"
-              stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
       </svg>
     </button>
 
@@ -394,8 +467,7 @@ body {
 
 </div>
 
-   <div class="bottom-spacer"></div>
-
+<div class="bottom-spacer"></div>
 
 </body>
 
@@ -403,22 +475,10 @@ body {
 
 
 
-
-
-
-
-
-
 <script>
-/* ============================
-   CONFIGURACIÓN POR ÁLBUM
-   ============================ */
 const audioBasePath = "../audio/Warmth_Of_Christmas/";
 const defaultCover  = "../img/portadaWarmthOfChristmas.png";
 
-/* ============================
-   VARIABLES
-   ============================ */
 const trackElements = Array.from(document.querySelectorAll(".track"));
 let currentIndex = -1;
 let repeat = false;
@@ -439,33 +499,39 @@ const fpProgressContainer = document.getElementById("fp-progress-container");
 const fpCollapse = document.getElementById("fp-collapse");
 const fpClose = document.getElementById("fp-close");
 
-/* ============================
-   CLICK EN CANCIONES
-   ============================ */
+const fpSub2 = document.querySelector(".fp-sub2");
+const fpSub3 = document.querySelector(".fp-sub3");
+
+const playAllBtn = document.getElementById("play-all");
+
+/* CLICK EN CANCIONES */
 trackElements.forEach((trackEl, index) => {
   trackEl.addEventListener("click", () => playIndex(index, "forward"));
 });
 
-/* Obtener datos */
+/* DATOS */
 function getTrackData(index){
   const el = trackElements[index];
   return {
     file: el.dataset.file,
     cover: el.dataset.cover || defaultCover,
-    title: el.querySelector(".track-title").textContent.trim()
+    title: el.querySelector(".track-title").textContent.trim(),
+    contiene: el.querySelector(".track-sub").textContent.trim(),
+    duracion: el.querySelector(".track-duration").textContent.trim()
   };
 }
 
-/* ============================
-   REPRODUCIR CANCIÓN
-   ============================ */
+/* REPRODUCIR */
 function playIndex(index, direction="forward"){
   currentIndex = index;
   const track = getTrackData(index);
 
-  animateTitle(direction, track.title);
-
+  fpTitle.textContent = track.title;
   fpCover.src = track.cover;
+
+  fpSub2.textContent = track.contiene;
+  fpSub3.textContent = "Duración: " + track.duracion;
+
   player.src = audioBasePath + track.file;
   player.play();
   updatePlayIcon(true);
@@ -475,47 +541,29 @@ function playIndex(index, direction="forward"){
   floatingPlayer.style.bottom = "0px";
 }
 
-/* Animación del título */
-function animateTitle(direction, newText){
-  fpTitle.classList.remove(
-    "fp-title-enter-left","fp-title-exit-left",
-    "fp-title-enter-right","fp-title-exit-right"
-  );
+/* BOTÓN REPRODUCIR TODO */
+playAllBtn.addEventListener("click", () => {
+  playIndex(0, "forward");
+});
 
-  fpTitle.classList.add(
-    direction === "backward" ? "fp-title-exit-right" : "fp-title-exit-left"
-  );
-
-  setTimeout(() => {
-    fpTitle.textContent = newText;
-
-    fpTitle.classList.remove(
-      "fp-title-enter-left","fp-title-exit-left",
-      "fp-title-enter-right","fp-title-exit-right"
-    );
-
-    fpTitle.classList.add(
-      direction === "backward" ? "fp-title-enter-right" : "fp-title-enter-left"
-    );
-  }, 200);
-}
-
-/* ============================
-   CERRAR / COLAPSAR
-   ============================ */
+/* CERRAR */
 fpClose.addEventListener("click", () => {
   player.pause();
   floatingPlayer.style.bottom = `-${floatingPlayer.offsetHeight}px`;
 });
 
+/* COLAPSAR */
 fpCollapse.addEventListener("click", (e) => {
   e.stopPropagation();
   floatingPlayer.classList.remove("expanded");
 });
 
-/* ============================
-   GRADIENTE DINÁMICO
-   ============================ */
+/* OSCURECER COLOR */
+function darkenColor(r,g,b,amount){
+  return `rgba(${Math.floor(r*amount)}, ${Math.floor(g*amount)}, ${Math.floor(b*amount)}, 1)`;
+}
+
+/* GRADIENTE DINÁMICO */
 function setDynamicGradient(imageSrc){
   const img = new Image();
   img.crossOrigin = "anonymous";
@@ -529,22 +577,26 @@ function setDynamicGradient(imageSrc){
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
 
-    const c1 = ctx.getImageData(10, 10, 1, 1).data;
-    const c2 = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
-    const c3 = ctx.getImageData(img.width-10, img.height-10, 1, 1).data;
+    const c = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
 
-    const col1 = `rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.6)`;
-    const col2 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.6)`;
-    const col3 = `rgba(${c3[0]}, ${c3[1]}, ${c3[2]}, 0.6)`;
+    const dark1 = darkenColor(c[0], c[1], c[2], 0.40);
+    const dark2 = darkenColor(c[0], c[1], c[2], 0.20);
+
+    const mid1  = darkenColor(c[0], c[1], c[2], 0.55);
+    const mid2  = darkenColor(c[0], c[1], c[2], 0.35);
 
     floatingPlayer.style.background =
-      `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
+      `linear-gradient(135deg, ${dark1}, ${dark2})`;
+
+    document.querySelector(".fp-play-circle").style.background =
+      `linear-gradient(135deg, ${dark1}, ${dark2})`;
+
+    playAllBtn.style.background =
+      `linear-gradient(135deg, ${mid1}, ${mid2})`;
   };
 }
 
-/* ============================
-   BARRA DE PROGRESO
-   ============================ */
+/* PROGRESO */
 player.addEventListener("timeupdate", () => {
   if (!player.duration || isDraggingProgress) return;
   const percent = (player.currentTime / player.duration) * 100;
@@ -598,9 +650,7 @@ document.addEventListener("touchend", () => {
   isDraggingProgress = false;
 });
 
-/* ============================
-   SIGUIENTE / ANTERIOR
-   ============================ */
+/* SIGUIENTE / ANTERIOR */
 document.getElementById("fp-next").addEventListener("click", (e) => {
   e.stopPropagation();
   const nextIndex = (currentIndex + 1) % trackElements.length;
@@ -613,9 +663,7 @@ document.getElementById("fp-prev").addEventListener("click", (e) => {
   playIndex(prevIndex, "backward");
 });
 
-/* ============================
-   REPETIR / ALEATORIO
-   ============================ */
+/* REPETIR / ALEATORIO */
 fpRepeatBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   repeat = !repeat;
@@ -642,9 +690,7 @@ player.addEventListener("ended", () => {
   playIndex(nextIndex, "forward");
 });
 
-/* ============================
-   PLAY / PAUSA
-   ============================ */
+/* PLAY / PAUSA */
 fpPlayBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   if (player.paused) {
@@ -667,9 +713,7 @@ function updatePlayIcon(isPlaying){
 player.addEventListener("play", () => updatePlayIcon(true));
 player.addEventListener("pause", () => updatePlayIcon(false));
 
-/* ============================
-   EXPANDIR / COLAPSAR
-   ============================ */
+/* EXPANDIR */
 floatingPlayer.addEventListener("click", (e) => {
   if (e.target.closest(".fp-btn") || 
       e.target.closest("#fp-close") || 
