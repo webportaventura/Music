@@ -39,7 +39,8 @@ body {
   width:80%;
   min-width:340px;
   margin-top:40px;
-  margin:10px auto;
+  margin-bottom:10px;
+ /* margin:10px auto;*/
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -173,7 +174,7 @@ body {
 /* MINI‑PLAYER */
 #floating-player {
   position:fixed;
-  bottom:-200px;
+  bottom:-100%;
   left:0;
   width:100%;
   background:rgba(0,0,0,0.4);
@@ -410,13 +411,14 @@ body {
     <img src="../img/portadaWarmthOfChristmas.png">
     <div>
       <div class="track-title">So This Is Christmas</div>
-      <div class="track-sub">Contiene: So This Is Christmas</div>
+      <div class="track-sub">So This Is Christmas</div>
     </div>
   </div>
 
   <div class="track-duration">01:27</div>
 
-  <a class="download-btn" onclick="event.stopPropagation()">
+  <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
+        download onclick="event.stopPropagation()">
     <svg viewBox="0 0 24 24">
       <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M5 19h14" stroke-linecap="round"/>
@@ -429,13 +431,14 @@ body {
     <img src="../img/portadaWarmthOfChristmas.png">
     <div>
       <div class="track-title">The Warmth Of Christmas</div>
-      <div class="track-sub">Contiene: Canción principal del espectácul0</div>
+      <div class="track-sub">Canción principal del espectáculo</div>
     </div>
   </div>
 
   <div class="track-duration">02:10</div>
 
-  <button class="download-btn" onclick="event.stopPropagation()">
+  <button class="download-btn"  href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/02.The.Warmth.Of.Christmas.MP3" 
+        download  onclick="event.stopPropagation()">
     <svg viewBox="0 0 24 24">
       <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M5 19h14" stroke-linecap="round"/>
@@ -556,7 +559,7 @@ trackElements.forEach((trackEl, index) => {
 });
 
 
-  /* Descargas */
+  /* Descargas 
   const releaseBasePath = "https://github.com/private-audio-shows-51q8/Music/tag/warmth_of_christmas/releases/download/v1.0/";
 
 trackElements.forEach((trackEl) => {
@@ -566,7 +569,7 @@ trackElements.forEach((trackEl) => {
   downloadBtn.href = releaseBasePath + file;
   downloadBtn.setAttribute("download", "");
 });
-
+*/
 
 /* DATOS */
 function getTrackData(index){
