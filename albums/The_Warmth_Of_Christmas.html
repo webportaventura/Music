@@ -1,7 +1,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=0.9">
 <title>The Warmth Of Christmas</title>
 
 <style>
@@ -36,8 +36,9 @@ body {
 
 .album-info {
   width:80%;
-  min-width:380px;
+  min-width:340px;
   margin-top:40px;
+  margin:10px auto;
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
@@ -46,17 +47,20 @@ body {
 
 .album-text {
   text-align:left;
+  margin:auto;
 }
 
 .album-title {
   font-size:150%;
   font-weight:700;
+  margin:auto;
   margin-bottom:8px;
 }
 
 .album-year {
   font-size:90%;
   color:white;
+  margin:auto;
   margin-bottom:4px;
 }
 
@@ -76,7 +80,7 @@ body {
   cursor:pointer;
   color:white;
   font-weight:600;
-  font-size:90%;
+  font-size:80%;
   background:linear-gradient(135deg, #552222, #221111);
   box-shadow:0 6px 14px rgba(0,0,0,0.45);
 }
@@ -116,7 +120,7 @@ body {
 .track-info {
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:10px;
   flex:1;
 }
 
@@ -171,7 +175,7 @@ body {
   bottom:-200px;
   left:0;
   width:100%;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.4);
   backdrop-filter:blur(14px);
   padding:16px;
   box-sizing:border-box;
@@ -180,6 +184,7 @@ body {
   z-index:999;
 }
 
+  /* Flecha colapso centrada */
 #fp-collapse {
   background:transparent;
   border:none;
@@ -192,6 +197,15 @@ body {
   display:none;
 }
 
+  #fp-collapse svg {
+  width:26px;
+  height:26px;
+  stroke:white;
+  stroke-width:2;
+  fill:none;
+}
+
+  /* Botón cerrar */
 #fp-close {
   position:absolute;
   right:8px;
@@ -210,9 +224,10 @@ body {
   margin-top:20px;
 }
 
+  /* Portada mini-player */
 #fp-cover {
-  width:66px;
-  height:66px;
+  width:80px;
+  height:80px;
   border-radius:8px;
   object-fit:cover;
   box-shadow:0 6px 14px rgba(0,0,0,0.55);
@@ -242,7 +257,7 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:26px;
+  gap:35px;
   margin-top:12px;
 }
 
@@ -274,7 +289,7 @@ body {
   align-items:center;
   justify-content:center;
   background:linear-gradient(135deg, #331515, #110707);
-  box-shadow:0 6px 14px rgba(0,0,0,0.55);
+  box-shadow:0 6px 14px rgba(0,0,0,0.65);
 }
 
 .fp-play-circle svg {
@@ -328,9 +343,10 @@ body {
   text-align:center;
 }
 
+  /* Portada expandida */
 #floating-player.expanded #fp-cover {
-  width:240px;
-  height:240px;
+  width:300px;
+  height:300px;
   margin-bottom:10px;
 }
 
@@ -346,11 +362,23 @@ body {
   margin-top:20px;
 }
 
-.bottom-spacer {
+  /* Animaciones título */
+.fp-title-exit-left { animation:exitLeft .35s forwards; }
+.fp-title-enter-left { animation:enterLeft .35s forwards; }
+.fp-title-exit-right { animation:exitRight .35s forwards; }
+.fp-title-enter-right { animation:enterRight .35s forwards; }
+
+@keyframes exitLeft { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(-30px);} }
+@keyframes enterLeft { from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);} }
+@keyframes exitRight { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(30px);} }
+@keyframes enterRight { from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);} }
+
+  .bottom-spacer {
   height:260px;
 }
+  
 </style>
-
+</head>
 
 
 
@@ -365,7 +393,7 @@ body {
     <div class="album-text">
       <div class="album-title">The Warmth Of Christmas</div>
       <div class="album-year">2025</div>
-      <div class="album-count">8 canciones</div>
+      <div class="album-count">8 canciones, 20min 57s</div>
     </div>
 
     <button id="play-all" class="playall-btn">
@@ -381,11 +409,11 @@ body {
     <img src="../img/portadaWarmthOfChristmas.png">
     <div>
       <div class="track-title">So This Is Christmas</div>
-      <div class="track-sub">Contiene: 1</div>
+      <div class="track-sub">Contiene: So This Is Christmas</div>
     </div>
   </div>
 
-  <div class="track-duration">00:00</div>
+  <div class="track-duration">01:27</div>
 
   <button class="download-btn" onclick="event.stopPropagation()">
     <svg viewBox="0 0 24 24">
@@ -400,11 +428,11 @@ body {
     <img src="../img/portadaWarmthOfChristmas.png">
     <div>
       <div class="track-title">The Warmth Of Christmas</div>
-      <div class="track-sub">Contiene: 2</div>
+      <div class="track-sub">Contiene: Canción principal del espectácul0</div>
     </div>
   </div>
 
-  <div class="track-duration">00:00</div>
+  <div class="track-duration">02:10</div>
 
   <button class="download-btn" onclick="event.stopPropagation()">
     <svg viewBox="0 0 24 24">
@@ -428,12 +456,15 @@ body {
   <div class="fp-content">
     <img id="fp-cover" src="../img/portadaWarmthOfChristmas.png">
 
-    <div class="fp-text">
-      <div id="fp-title">Reproduciendo...</div>
-      <div class="fp-sub1">Álbum: The Warmth Of Christmas (2025)</div>
-      <div class="fp-sub2"></div>
-      <div class="fp-sub3"></div>
-    </div>
+<div class="fp-text">
+  <div id="fp-anim">
+    <div id="fp-title">Reproduciendo...</div>
+    <div class="fp-sub1">Álbum: The Warmth Of Christmas (2025)</div>
+    <div class="fp-sub2"></div>
+    <div class="fp-sub3"></div>
+  </div>
+</div>
+
   </div>
 
   <div class="fp-controls-row">
@@ -484,9 +515,15 @@ body {
 
 
 <script>
+  /* ============================
+   CONFIGURACIÓN POR ÁLBUM
+   ============================ */
 const audioBasePath = "../audio/Warmth_Of_Christmas/";
 const defaultCover  = "../img/portadaWarmthOfChristmas.png";
 
+  /* ============================
+   VARIABLES
+   ============================ */
 const trackElements = Array.from(document.querySelectorAll(".track"));
 let currentIndex = -1;
 let repeat = false;
@@ -534,11 +571,14 @@ function playIndex(index, direction="forward"){
   currentIndex = index;
   const track = getTrackData(index);
 
-  fpTitle.textContent = track.title;
   fpCover.src = track.cover;
 
-  fpSub2.textContent = track.contiene;
-  fpSub3.textContent = "Duración: " + track.duracion;
+animateBlock(direction, {
+  title: track.title,
+  contiene: track.contiene,
+  duracion: track.duracion
+});
+
 
   player.src = audioBasePath + track.file;
   player.play();
@@ -548,6 +588,38 @@ function playIndex(index, direction="forward"){
 
   floatingPlayer.style.bottom = "0px";
 }
+
+  /* Animación del título */
+  function animateBlock(direction, newData){
+  const block = document.getElementById("fp-anim");
+
+  block.classList.remove(
+    "fp-title-enter-left","fp-title-exit-left",
+    "fp-title-enter-right","fp-title-exit-right"
+  );
+
+  block.classList.add(
+    direction === "backward" ? "fp-title-exit-right" : "fp-title-exit-left"
+  );
+
+  setTimeout(() => {
+
+    fpTitle.textContent = newData.title;
+    fpSub2.textContent = newData.contiene;
+    fpSub3.textContent = "Duración: " + newData.duracion;
+
+    block.classList.remove(
+      "fp-title-enter-left","fp-title-exit-left",
+      "fp-title-enter-right","fp-title-exit-right"
+    );
+
+    block.classList.add(
+      direction === "backward" ? "fp-title-enter-right" : "fp-title-enter-left"
+    );
+
+  }, 200);
+}
+
 
 /* BOTÓN REPRODUCIR TODO */
 playAllBtn.addEventListener("click", () => {
@@ -585,16 +657,24 @@ function setDynamicGradient(imageSrc){
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
 
-    const c = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
+   const c = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
 
-    const dark1 = darkenColor(c[0], c[1], c[2], 0.40);
-    const dark2 = darkenColor(c[0], c[1], c[2], 0.20);
+      const c1 = ctx.getImageData(10, 10, 1, 1).data;
+      const c2 = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
+      const c3 = ctx.getImageData(img.width-10, img.height-10, 1, 1).data;
+
+      const col1 = `rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.6)`;
+      const col2 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.6)`;
+      const col3 = `rgba(${c3[0]}, ${c3[1]}, ${c3[2]}, 0.6)`;
+
+    const dark1 = darkenColor(c[0], c[1], c[2], 0.90);
+    const dark2 = darkenColor(c[0], c[1], c[2], 0.90);
 
     const mid1  = darkenColor(c[0], c[1], c[2], 0.55);
     const mid2  = darkenColor(c[0], c[1], c[2], 0.35);
 
     floatingPlayer.style.background =
-      `linear-gradient(135deg, ${dark1}, ${dark2})`;
+      `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
 
     document.querySelector(".fp-play-circle").style.background =
       `linear-gradient(135deg, ${dark1}, ${dark2})`;
