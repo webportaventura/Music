@@ -41,7 +41,7 @@ body {
   margin:10px auto;
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
+  align-items:center;
   background:transparent;
 }
 
@@ -95,7 +95,7 @@ body {
 .track {
   display:flex;
   align-items:center;
-  padding:8px 8px;
+  padding:5px 8px;
   margin:10px auto;
   width:60%;
   min-width:340px;
@@ -226,8 +226,8 @@ body {
 
   /* Portada mini-player */
 #fp-cover {
-  width:80px;
-  height:80px;
+  width:130px;
+  height:130px;
   border-radius:8px;
   object-fit:cover;
   box-shadow:0 6px 14px rgba(0,0,0,0.55);
@@ -415,12 +415,12 @@ body {
 
   <div class="track-duration">01:27</div>
 
-  <button class="download-btn" onclick="event.stopPropagation()">
+  <a class="download-btn" onclick="event.stopPropagation()">
     <svg viewBox="0 0 24 24">
       <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M5 19h14" stroke-linecap="round"/>
     </svg>
-  </button>
+  </a>
 </div>
 
 <div class="track" data-file="02.%20The%20Warmth%20Of%20Christmas.MP3" data-cover="../img/portadaWarmthOfChristmas.png">
@@ -459,9 +459,9 @@ body {
 <div class="fp-text">
   <div id="fp-anim">
     <div id="fp-title">Reproduciendo...</div>
-    <div class="fp-sub1">Álbum: The Warmth Of Christmas (2025)</div>
     <div class="fp-sub2"></div>
     <div class="fp-sub3"></div>
+    <div class="fp-sub1">Álbum: The Warmth Of Christmas (2025)</div>
   </div>
 </div>
 
@@ -469,13 +469,13 @@ body {
 
   <div class="fp-controls-row">
 
-    <button id="fp-shuffle" class="fp-btn toggle">
-      <svg viewBox="0 0 24 24">
-        <path d="M4 4c5 0 7 5 10 10s5 6 6 6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M20 4l-4 4 4 4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M4 20l4-4-4-4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
-    </button>
+<button id="fp-shuffle" class="fp-btn toggle">
+  <svg viewBox="0 0 24 24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M4 4c5 0 7 5 10 10s5 6 6 6"/>
+    <path d="M20 4l-4 4 4 4"/>
+    <path d="M4 20l4-4-4-4"/>
+  </svg>
+</button>
 
     <button id="fp-prev" class="fp-btn">
       <svg viewBox="0 0 24 24"><path d="M6 5v14h2V5H6zm3 7l8 7V5l-8 7z"/></svg>
@@ -553,6 +553,19 @@ const playAllBtn = document.getElementById("play-all");
 trackElements.forEach((trackEl, index) => {
   trackEl.addEventListener("click", () => playIndex(index, "forward"));
 });
+
+
+  /* Descargas */
+  const releaseBasePath = "https://github.com/private-audio-shows-51q8/Music/tag/warmth_of_christmas/releases/download/v1.0/";
+
+trackElements.forEach((trackEl) => {
+  const file = trackEl.dataset.file;
+  const downloadBtn = trackEl.querySelector(".download-btn");
+
+  downloadBtn.href = releaseBasePath + file;
+  downloadBtn.setAttribute("download", "");
+});
+
 
 /* DATOS */
 function getTrackData(index){
