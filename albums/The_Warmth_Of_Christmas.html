@@ -719,9 +719,9 @@ function darkenColor(r,g,b,amount){
 
 /* GRADIENTE DINÁMICO */
 function setDynamicGradient() {
-  const col1 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.4)`;
-  const col2 = `rgba(${c[0]},  ${c[1]},  ${c[2]},  0.4)`;
-  const col3 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.4)`;
+  const col1 = `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.5)`;
+  const col2 = `rgba(${c2[0]},  ${c2[1]},  ${c2[2]},  0.5)`;
+  const col3 = `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.5)`;
 
   const dark1 = darkenColor(c[0], c[1], c[2], 0.90);
   const dark2 = darkenColor(c2[0],  c2[1],  c2[2],  0.30);
