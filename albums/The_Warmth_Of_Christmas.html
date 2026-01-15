@@ -10,11 +10,7 @@ body {
   padding:0;
   font-family:'Montserrat', sans-serif;
   color:white;
-  background:linear-gradient(to bottom,
-    rgba(120,40,40,0.55),
-    rgba(40,15,15,0.85),
-    rgba(15,8,8,1)
-  );
+  background:rgba(0,0,0,1);
   background-attachment:fixed;
 }
 
@@ -84,7 +80,7 @@ body {
   color:white;
   font-weight:600;
   font-size:70%;
-  background:linear-gradient(135deg, #552222, #221111);
+  background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.45);
   }
 
@@ -179,7 +175,7 @@ body {
   bottom:-100%;
   left:0;
   width:100%;
-  background:rgba(0,0,0,0.4);
+  background:transparent;
   backdrop-filter:blur(14px);
   padding:16px;
   box-sizing:border-box;
@@ -292,7 +288,7 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg, #331515, #110707);
+  background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.65);
 }
 
@@ -348,7 +344,7 @@ body {
 }
 
   /* Portada expandida */
-#floating-player.expanded #fp-cover {
+#floating-player.expanded .fp-cover {
   width:300px;
   height:300px;
   margin-bottom:10px;
@@ -593,17 +589,17 @@ body {
 <script>
   /* ============================
    CONFIGURACIÓN POR ÁLBUM
-   ======================================================================================================CAMBIAR RUTA AUDIOS Y PORTADA ALBUM==================================== */
+   ======================================================================================================CAMBIAR RUTA AUDIOS Y PORTADA ALBUM; colores RGB============================== */
 const audioBasePath = "../audio/Warmth_Of_Christmas/";
-const defaultCover  = "../img/portadaCelebration.png";
+const defaultCover  = "../img/portadaWarmthOfChristmas.png";
 
+/* COLORES DEL ÁLBUM (RGB) */
+const c  = [186, 48, 24];   // color principal[154, 18, 29]
+const c2 = [113, 7, 18];  // color secundario
 
-// Aplicar gradiente inicial basado en la portada por defecto
-setDynamicGradient(defaultCover);
-document.querySelectorAll(".js-cover").forEach(img => {
-  img.src = defaultCover;
-});
+/* ===================================================================================================================================================================================== */
 
+document.querySelectorAll(".js-cover").forEach(img => {img.src = defaultCover;});
 
   /* ============================
    VARIABLES
@@ -629,6 +625,9 @@ const fpClose = document.getElementById("fp-close");
 const fpSub2 = document.querySelector(".fp-sub2");
 const fpSub3 = document.querySelector(".fp-sub3");
 const playAllBtn = document.getElementById("play-all");
+
+setDynamicGradient();
+
 
 /* CLICK EN CANCIONES */
 trackElements.forEach((trackEl, index) => {
@@ -719,53 +718,34 @@ function darkenColor(r,g,b,amount){
 }
 
 /* GRADIENTE DINÁMICO */
-function setDynamicGradient(imageSrc){
-  const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.src = imageSrc;
+function setDynamicGradient() {
+  const col1 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.4)`;
+  const col2 = `rgba(${c[0]},  ${c[1]},  ${c[2]},  0.4)`;
+  const col3 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.4)`;
 
-  img.onload = function(){
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+  const dark1 = darkenColor(c[0], c[1], c[2], 0.90);
+  const dark2 = darkenColor(c2[0],  c2[1],  c2[2],  0.30);
 
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+  const mid1  = darkenColor(c[0], c[1], c[2], 0.70);
+  const mid2  = darkenColor(c2[0],  c2[1],  c2[2],  0.25);
 
-   const c = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
+  const fon1 = darkenColor(c2[0], c2[1], c2[2], 0.80);
+  const fon2 = darkenColor(c2[0], c2[1], c2[2], 0.10);
+  const fon3 = darkenColor(c2[0], c2[1], c2[2], 0.02);
 
-      const c1 = ctx.getImageData(10, 10, 1, 1).data;
-      const c2 = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
-      const c3 = ctx.getImageData(img.width-10, img.height-10, 1, 1).data;
+  floatingPlayer.style.background =
+    `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
 
-      const col1 = `rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.4)`;
-      const col2 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.4)`;
-      const col3 = `rgba(${c3[0]}, ${c3[1]}, ${c3[2]}, 0.4)`;
+  document.querySelector(".fp-play-circle").style.background =
+    `linear-gradient(135deg, ${dark1}, ${dark2})`;
 
-    const dark1 = darkenColor(c[0], c[1], c[2], 0.70);
-    const dark2 = darkenColor(c[0], c[1], c[2], 0.50);
+  playAllBtn.style.background =
+    `linear-gradient(135deg, ${mid1}, ${mid2})`;
 
-    const mid1  = darkenColor(c[0], c[1], c[2], 0.45);
-    const mid2  = darkenColor(c[0], c[1], c[2], 0.25);
-
-    const fon1 = darkenColor(c[0], c[1], c[2], 0.60);
-    const fon2 = darkenColor(c[0], c[1], c[2], 0.10);
-    const fon3 = darkenColor(c[0], c[1], c[2], 0.00);
-
-    floatingPlayer.style.background =
-      `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
-
-    document.querySelector(".fp-play-circle").style.background =
-      `linear-gradient(135deg, ${dark1}, ${dark2})`;
-
-    playAllBtn.style.background =
-      `linear-gradient(135deg, ${mid1}, ${mid2})`;
-
-    document.body.style.background =
-      `linear-gradient(to bottom, ${fon1}, ${fon2}, ${fon3})`;
-
-  };
+  document.body.style.background =
+    `linear-gradient(to bottom, ${fon1}, ${fon2}, ${fon3})`;
 }
+
 
 /* PROGRESO */
 player.addEventListener("timeupdate", () => {
