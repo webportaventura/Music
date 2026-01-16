@@ -10,11 +10,7 @@ body {
   padding:0;
   font-family:'Montserrat', sans-serif;
   color:white;
-  background:linear-gradient(to bottom,
-    rgba(120,40,40,0.55),
-    rgba(40,15,15,0.85),
-    rgba(15,8,8,1)
-  );
+  background:rgba(0,0,0,1);
   background-attachment:fixed;
 }
 
@@ -84,7 +80,7 @@ body {
   color:white;
   font-weight:600;
   font-size:70%;
-  background:linear-gradient(135deg, #552222, #221111);
+  background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.45);
   }
 
@@ -179,7 +175,7 @@ body {
   bottom:-100%;
   left:0;
   width:100%;
-  background:rgba(0,0,0,0.4);
+  background:transparent;
   backdrop-filter:blur(14px);
   padding:16px;
   box-sizing:border-box;
@@ -229,7 +225,7 @@ body {
 }
 
   /* Portada mini-player */
-#fp-cover {
+.fp-cover {
   width:130px;
   height:130px;
   border-radius:8px;
@@ -292,7 +288,7 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg, #331515, #110707);
+  background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.65);
 }
 
@@ -348,7 +344,7 @@ body {
 }
 
   /* Portada expandida */
-#floating-player.expanded #fp-cover {
+#floating-player.expanded .fp-cover {
   width:300px;
   height:300px;
   margin-bottom:10px;
@@ -380,7 +376,37 @@ body {
   .bottom-spacer {
   height:320px;
 }
-  
+
+
+  .back-btn {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.45);
+  cursor: pointer;
+  z-index: 9999;
+  transition: background .25s;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.back-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: white;
+  stroke-width: 2;
+  fill: none;
+}
 </style>
 </head>
 
@@ -390,7 +416,19 @@ body {
 
 
 <body>
+<svg style="display:none;">
+  <symbol id="icon-download" viewBox="0 0 24 24">
+    <path d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12"
+      stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
+<a href="https://private-audio-shows-51q8.github.io/Music/" class="back-btn">
+  <svg viewBox="0 0 24 24">
+    <path d="M15 6l-6 6 6 6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+  
 <div class="album">
   <img class="cover" src="../img/portadaMusicStars.png">
 
@@ -415,8 +453,7 @@ body {
                <div class="track-sub">Intro-Canción principal-Azizam-Espresso-APT</div>
     </div>   </div>  <div class="track-duration">06:06</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
 <div class="track" data-file="02.%20The%20Warmth%20Of%20Christmas.MP3" data-cover="../img/portadaMusicStars.png">
   <div class="track-info">
@@ -431,10 +468,7 @@ body {
 
   <a class="download-btn"  href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/02.The.Warmth.Of.Christmas.MP3" 
         download  onclick="event.stopPropagation()">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>
-    </svg>
+    <svg><use href="#icon-download"></use></svg>
   </a>
 </div>
 
@@ -444,8 +478,7 @@ body {
                <div class="track-sub">Technologic-Around The World-Get Lucky-I Feel It Coming-Starboy</div>
     </div>   </div>  <div class="track-duration">03:27</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
   <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaMusicStars.png">  <div class="track-info">
                <img src="../img/portadaMusicStars.png">
@@ -453,8 +486,7 @@ body {
                <div class="track-sub">Easy On Me-Hello-When We Were Young-Someone Like You</div>
     </div>   </div>  <div class="track-duration">04:53</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
   
   <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaMusicStars.png">  <div class="track-info">
@@ -463,8 +495,7 @@ body {
                <div class="track-sub">Natural-Demons-Thunder-Whatever It Takes-Radioactive-Believer</div>
     </div>   </div>  <div class="track-duration">03:53</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
   
 
   <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaMusicStars.png">  <div class="track-info">
@@ -473,8 +504,7 @@ body {
                <div class="track-sub">Blow Your Mind-New Rules-Physical-Prisoner-One Kiss-Levitating (with Cold Heart)-Don't Start Now-Houdini-Training Season</div>
     </div>   </div>  <div class="track-duration">04:36</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
   <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaMusicStars.png">  <div class="track-info">
                <img src="../img/portadaMusicStars.png">
@@ -482,8 +512,7 @@ body {
                <div class="track-sub">Don't Stop The Music-Only Girl-Where Have You Been-Rude Boy-Umbrella-Diamonds-We Found Love</div>
     </div>   </div>  <div class="track-duration">04:01</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
   <div class="track" data-file="01._So_This_Is_Christmas.MP3" data-cover="../img/portadaMusicStars.png">  <div class="track-info">
                <img src="../img/portadaMusicStars.png">
@@ -491,8 +520,7 @@ body {
                <div class="track-sub">Canción principal del espectáculo</div>
     </div>   </div>  <div class="track-duration">02:49</div>
   <a class="download-btn" href="https://github.com/private-audio-shows-51q8/Music/releases/download/warmth_of_christmas/01.So.This.Is.Christmas.MP3" 
-        download onclick="event.stopPropagation()"> <svg viewBox="0 0 24 24"> <path d="M12 3v12m0 0l-5-5m5 5l5-5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 19h14" stroke-linecap="round"/>    </svg>  </a>  </div>
+        download onclick="event.stopPropagation()"> <svg><use href="#icon-download"></use></svg>  </a>  </div>
 
 
 <!-- MINI‑PLAYER -->
@@ -523,11 +551,9 @@ body {
   <div class="fp-controls-row">
 
 <button id="fp-shuffle" class="fp-btn toggle">
-  <svg viewBox="0 0 24 24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round">
-    <path d="M4 4c5 0 7 5 10 10s5 6 6 6"/>
-    <path d="M20 4l-4 4 4 4"/>
-    <path d="M4 20l4-4-4-4"/>
-  </svg>
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+  <path d="M237.65723,178.34277a8.00122,8.00122,0,0,1,0,11.31446l-24,24A8.00066,8.00066,0,0,1,200,208V191.98584a72.13911,72.13911,0,0,1-57.65332-30.13721L100.63379,103.4502A56.11029,56.11029,0,0,0,55.06445,80H32a8,8,0,0,1,0-16H55.06445a72.14126,72.14126,0,0,1,58.58887,30.15137l41.71289,58.39843A56.0996,56.0996,0,0,0,200,175.97168V160a8.00065,8.00065,0,0,1,13.65723-5.65723Zm-94.64356-71.36132a7.99621,7.99621,0,0,0,11.15918-1.86036l1.19336-1.67089A56.0996,56.0996,0,0,1,200,80.02832V96a8.00053,8.00053,0,0,0,13.65723,5.65723l24-24a8.00122,8.00122,0,0,0,0-11.31446l-24-24A8.00065,8.00065,0,0,0,200,48V64.01416a72.13911,72.13911,0,0,0-57.65332,30.13721l-1.19336,1.6709A7.9986,7.9986,0,0,0,143.01367,106.98145Zm-30.02734,42.0371a7.99642,7.99642,0,0,0-11.15918,1.86036l-1.19336,1.67089A56.11029,56.11029,0,0,1,55.06445,176H32a8,8,0,0,0,0,16H55.06445a72.14126,72.14126,0,0,0,58.58887-30.15137l1.19336-1.6709A7.9986,7.9986,0,0,0,112.98633,149.01855Z"/>
+</svg>
 </button>
 
     <button id="fp-prev" class="fp-btn">
@@ -542,10 +568,10 @@ body {
       <svg viewBox="0 0 24 24"><path d="M16 5v14h-2V5h2zM6 5v14l8-7L6 5z"/></svg>
     </button>
 
-    <button id="fp-repeat" class="fp-btn toggle">
-      <svg viewBox="0 0 24 24">
-        <path d="M7 7h9v2l3-3-3-3v2H6a3 3 0 0 0-3 3v4h2V8a1 1 0 0 1 1-1zm10 10H8v-2l-3 3 3 3v-2h10a3 3 0 0 0 3-3v-4h-2v4a1 1 0 0 1-1 1z"/>
-      </svg>
+   <button id="fp-repeat" class="fp-btn toggle">
+      <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24,128A72.08124,72.08124,0,0,1,96,56h96V40a8.0001,8.0001,0,0,1,13.65723-5.65674l24,24a8,8,0,0,1,0,11.31348l-24,24A8.0001,8.0001,0,0,1,192,88V72H96a56.06322,56.06322,0,0,0-56,56,8,8,0,0,1-16,0Zm200-8a8.00039,8.00039,0,0,0-8,8,56.06322,56.06322,0,0,1-56,56H64V168a8.0001,8.0001,0,0,0-13.65723-5.65674l-24,24a8,8,0,0,0,0,11.31348l24,24A8.0001,8.0001,0,0,0,64,216V200h96a72.08124,72.08124,0,0,0,72-72A8.00039,8.00039,0,0,0,224,120Z"/>
+</svg>
     </button>
 
   </div>
@@ -573,6 +599,11 @@ body {
    ============================ */
 const audioBasePath = "../audio/Music_Stars_Shine_Bright/";
 const defaultCover  = "../img/portadaMusicStars.png";
+/* COLORES DEL ÁLBUM (RGB) */
+const c  = [78, 43, 176];   // color principal
+const c2 = [133, 39, 195];  // color secundario
+
+/* ===================================================================================================================================================================================== */
 
   /* ============================
    VARIABLES
@@ -596,12 +627,12 @@ const fpProgressThumb = document.getElementById("fp-progress-thumb");
 const fpProgressContainer = document.getElementById("fp-progress-container");
 const fpCollapse = document.getElementById("fp-collapse");
 const fpClose = document.getElementById("fp-close");
-
 const fpSub2 = document.querySelector(".fp-sub2");
 const fpSub3 = document.querySelector(".fp-sub3");
-
 const playAllBtn = document.getElementById("play-all");
-
+  
+setDynamicGradient();
+  
 /* CLICK EN CANCIONES */
 trackElements.forEach((trackEl, index) => {
   trackEl.addEventListener("click", () => playIndex(index, "forward"));
@@ -612,7 +643,6 @@ function getTrackData(index){
   const el = trackElements[index];
   return {
     file: el.dataset.file,
-    cover: el.dataset.cover || defaultCover,
     title: el.querySelector(".track-title").textContent.trim(),
     contiene: el.querySelector(".track-sub").textContent.trim(),
     duracion: el.querySelector(".track-duration").textContent.trim()
@@ -624,8 +654,6 @@ function playIndex(index, direction="forward"){
   currentIndex = index;
   const track = getTrackData(index);
 
-  fpCover.src = track.cover;
-
 animateBlock(direction, {
   title: track.title,
   contiene: track.contiene,
@@ -636,9 +664,6 @@ animateBlock(direction, {
   player.src = audioBasePath + track.file;
   player.play();
   updatePlayIcon(true);
-
-  setDynamicGradient(track.cover);
-
   floatingPlayer.style.bottom = "0px";
 }
 
@@ -697,44 +722,32 @@ function darkenColor(r,g,b,amount){
 }
 
 /* GRADIENTE DINÁMICO */
-function setDynamicGradient(imageSrc){
-  const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.src = imageSrc;
+function setDynamicGradient() {
+  const col1 = `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.5)`;
+  const col2 = `rgba(${c2[0]},  ${c2[1]},  ${c2[2]},  0.5)`;
+  const col3 = `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.5)`;
 
-  img.onload = function(){
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+  const dark1 = darkenColor(c[0], c[1], c[2], 0.90);
+  const dark2 = darkenColor(c2[0],  c2[1],  c2[2],  0.30);
 
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+  const mid1  = darkenColor(c[0], c[1], c[2], 0.70);
+  const mid2  = darkenColor(c2[0],  c2[1],  c2[2],  0.25);
 
-   const c = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
+  const fon1 = darkenColor(c2[0], c2[1], c2[2], 0.80);
+  const fon2 = darkenColor(c2[0], c2[1], c2[2], 0.10);
+  const fon3 = darkenColor(c2[0], c2[1], c2[2], 0.02);
 
-      const c1 = ctx.getImageData(10, 10, 1, 1).data;
-      const c2 = ctx.getImageData(img.width/2, img.height/2, 1, 1).data;
-      const c3 = ctx.getImageData(img.width-10, img.height-10, 1, 1).data;
+  floatingPlayer.style.background =
+    `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
 
-      const col1 = `rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.6)`;
-      const col2 = `rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.6)`;
-      const col3 = `rgba(${c3[0]}, ${c3[1]}, ${c3[2]}, 0.6)`;
+  document.querySelector(".fp-play-circle").style.background =
+    `linear-gradient(135deg, ${dark1}, ${dark2})`;
 
-    const dark1 = darkenColor(c[0], c[1], c[2], 0.90);
-    const dark2 = darkenColor(c[0], c[1], c[2], 0.90);
+  playAllBtn.style.background =
+    `linear-gradient(135deg, ${mid1}, ${mid2})`;
 
-    const mid1  = darkenColor(c[0], c[1], c[2], 0.55);
-    const mid2  = darkenColor(c[0], c[1], c[2], 0.35);
-
-    floatingPlayer.style.background =
-      `linear-gradient(135deg, ${col1}, ${col2}, ${col3})`;
-
-    document.querySelector(".fp-play-circle").style.background =
-      `linear-gradient(135deg, ${dark1}, ${dark2})`;
-
-    playAllBtn.style.background =
-      `linear-gradient(135deg, ${mid1}, ${mid2})`;
-  };
+  document.body.style.background =
+    `linear-gradient(to bottom, ${fon1}, ${fon2}, ${fon3})`;
 }
 
 /* PROGRESO */
@@ -794,6 +807,11 @@ document.addEventListener("touchend", () => {
 /* SIGUIENTE / ANTERIOR */
 document.getElementById("fp-next").addEventListener("click", (e) => {
   e.stopPropagation();
+  if (shuffle) {
+    const randomIndex = Math.floor(Math.random() * trackElements.length);
+    playIndex(randomIndex, "forward");
+    return;
+  }
   const nextIndex = (currentIndex + 1) % trackElements.length;
   playIndex(nextIndex, "forward");
 });
