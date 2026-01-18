@@ -14,9 +14,7 @@ body {
   background-attachment:fixed;
 }
 
-    a:focus, a:active,
-button:focus, button:active {
-  outline: none;
+* {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -88,8 +86,13 @@ button:focus, button:active {
   font-size:70%;
   background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.45);
-  }
+  transition: filter .25s, transform .25s;
+}
 
+.playall-btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
 
 .playall-btn svg {
   width:20px;
@@ -198,6 +201,12 @@ button:focus, button:active {
   border-top:1px solid rgba(255,255,255,0.1);
   transition:bottom .35s ease;
   z-index:999;
+    transition:
+    max-height .35s ease,
+    padding-top .35s ease,
+    transform .35s ease;
+  max-height: 120px; /* altura del mini-player cerrado */
+  overflow: hidden;
 }
 
   /* Flecha colapso centrada */
@@ -306,6 +315,12 @@ button:focus, button:active {
   justify-content:center;
   background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.65);
+  transition: filter .25s, transform .25s;
+}
+
+.fp-play-circle:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
 }
 
 .fp-play-circle svg {
@@ -341,12 +356,29 @@ button:focus, button:active {
   background:white;
   border-radius:50%;
 }
+  
+#floating-player .fp-content,
+#floating-player .fp-controls-row,
+#floating-player #fp-progress-container {
+  transition: all .35s ease;
+}
 
 /* EXPANDIDO */
 #floating-player.expanded {
   height:78vh;
   border-radius:20px 20px 0 0;
   padding-top:40px;
+  transform: translateY(-10px);
+}
+
+  #floating-player.expanded .fp-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#floating-player .fp-content {
+  opacity: 0.9;
+  transform: translateY(10px);
 }
 
 #floating-player.expanded #fp-collapse {
@@ -623,7 +655,7 @@ button:focus, button:active {
    CONFIGURACIÓN POR ÁLBUM
    ======================================================================================================CAMBIAR RUTA AUDIOS Y PORTADA ALBUM; colores RGB============================== */
 const audioBasePath = "../audio/Celebration/";
-const defaultCover  = "../img/portadaCelebration.png";
+const defaultCover  = "../img/portadaCelebration.webp";
 
 /* COLORES DEL ÁLBUM (RGB) */
 const c  = [208, 165, 56];   // color principal
