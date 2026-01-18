@@ -212,10 +212,8 @@ body {
   /* NUEVO: transición suave */
   transition:
     bottom .35s ease,
-    max-height .35s ease,
     transform .35s ease,
     padding-top .35s ease;
-  max-height: 120px; /* altura del mini-player pequeño */
   transform: translateY(0);
   overflow: hidden;
 }
@@ -300,14 +298,6 @@ body {
   overflow: hidden;
 }
 
-.fp-controls-row:active::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.25);
-  animation: flash .15s ease-out;
-}
-
 .fp-btn {
   background:transparent;
   border:none;
@@ -386,7 +376,7 @@ body {
   border-radius: 20px 20px 0 0;
 
   /* NUEVO: mueve el player hacia arriba */
-  transform: translateY(-55vh);
+  transform: translateY(-35vh);
 }
 
 #floating-player.expanded #fp-collapse {
