@@ -86,12 +86,21 @@ body {
   font-size:70%;
   background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.45);
-  transition: filter .25s, transform .25s;
+  position: relative;
+  overflow: hidden;
 }
 
-.playall-btn:hover {
-  filter: brightness(1.15);
-  transform: translateY(-2px);
+.playall-btn:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  animation: flash .15s ease-out;
+}
+
+@keyframes flash {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 .playall-btn svg {
@@ -190,24 +199,27 @@ body {
 
 /* MINI‑PLAYER */
 #floating-player {
-  position:fixed;
-  bottom:-100%;
-  left:0;
-  width:100%;
-  background:transparent;
-  backdrop-filter:blur(14px);
-  padding:16px;
-  box-sizing:border-box;
-  border-top:1px solid rgba(255,255,255,0.1);
-  transition:bottom .35s ease;
-  z-index:999;
-    transition:
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  backdrop-filter: blur(14px);
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 999;
+  /* NUEVO: transición suave */
+  transition:
+    bottom .35s ease,
     max-height .35s ease,
-    padding-top .35s ease,
-    transform .35s ease;
-  max-height: 120px; /* altura del mini-player cerrado */
+    transform .35s ease,
+    padding-top .35s ease;
+  max-height: 120px; /* altura del mini-player pequeño */
+  transform: translateY(0);
   overflow: hidden;
 }
+
 
   /* Flecha colapso centrada */
 #fp-collapse {
@@ -284,6 +296,16 @@ body {
   align-items:center;
   gap:35px;
   margin-top:12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fp-controls-row:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  animation: flash .15s ease-out;
 }
 
 .fp-btn {
@@ -315,12 +337,6 @@ body {
   justify-content:center;
   background:transparent;
   box-shadow:0 6px 14px rgba(0,0,0,0.65);
-  transition: filter .25s, transform .25s;
-}
-
-.fp-play-circle:hover {
-  filter: brightness(1.15);
-  transform: translateY(-2px);
 }
 
 .fp-play-circle svg {
@@ -365,20 +381,12 @@ body {
 
 /* EXPANDIDO */
 #floating-player.expanded {
-  height:78vh;
-  border-radius:20px 20px 0 0;
-  padding-top:40px;
-  transform: translateY(-10px);
-}
+  max-height: 78vh;        /* reemplaza height */
+  padding-top: 40px;
+  border-radius: 20px 20px 0 0;
 
-  #floating-player.expanded .fp-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#floating-player .fp-content {
-  opacity: 0.9;
-  transform: translateY(10px);
+  /* NUEVO: mueve el player hacia arriba */
+  transform: translateY(-55vh);
 }
 
 #floating-player.expanded #fp-collapse {
