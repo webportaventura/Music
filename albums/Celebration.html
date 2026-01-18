@@ -94,7 +94,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.15);
   animation: flash .15s ease-out;
 }
 
@@ -136,13 +136,12 @@ body {
     transform: translateX(0);
   }
 }
-
-.track:hover {
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.03),
-    rgba(255,255,255,0.15)
-  );
+.track:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  animation: flash .15s ease-out;
 }
 
 .track-info {
@@ -212,9 +211,9 @@ body {
   /* NUEVO: transición suave */
   transition:
     bottom .35s ease,
-    transform .35s ease,
+    max-height .35s ease,
     padding-top .35s ease;
-  transform: translateY(0);
+  max-height:35vh;
   overflow: hidden;
 }
 
@@ -293,7 +292,7 @@ body {
   justify-content:center;
   align-items:center;
   gap:35px;
-  margin-top:12px;
+  margin-top:15px;
   position: relative;
   overflow: hidden;
 }
@@ -341,7 +340,7 @@ body {
   height:8px;
   background:rgba(255,255,255,0.12);
   border-radius:4px;
-  margin-top:14px;
+  margin-top:20px;
   position:relative;
   cursor:pointer;
 }
@@ -374,9 +373,7 @@ body {
   max-height: 78vh;        /* reemplaza height */
   padding-top: 40px;
   border-radius: 20px 20px 0 0;
-
-  /* NUEVO: mueve el player hacia arriba */
-  transform: translateY(-35vh);
+  bottom: 0;
 }
 
 #floating-player.expanded #fp-collapse {
