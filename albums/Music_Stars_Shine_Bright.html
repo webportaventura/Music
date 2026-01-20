@@ -4,443 +4,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.9">
 <title>Music Stars Shine Bright</title>
   
-<style>
-    * { user-select: none; }
-body {
-  margin:0;
-  padding:0;
-  font-family:'Montserrat', sans-serif;
-  color:white;
-  background:rgba(0,0,0,1);
-  background-attachment:fixed;
-}
-* {
-  -webkit-tap-highlight-color: transparent;
-}
+<style>  * { user-select: none; }
+body {  margin:0;  padding:0;  font-family:'Montserrat', sans-serif;  color:white;  background:rgba(0,0,0,1);  background-attachment:fixed;} * {  -webkit-tap-highlight-color: transparent;}
+
 /* PORTADA + INFO ÁLBUM */
-.album {
-  max-width:90%;
-  margin:20px auto 10px auto;
-  padding:0;
-}
-
-.cover {
-  width:100%;
-  max-width:310px;
-  border-radius:12px;
-  display:block;
-  margin:auto;
-  box-shadow:0 18px 38px rgba(0,0,0,0.55);
-}
-
-.album-info {
-  width:55%;
-  min-width:340px;
-  margin-top:50px;
-  margin-bottom:15px;
-  margin:10px auto;
-  display:flex;
-  flex-wrap: wrap;
-  justify-content:space-between;
-  align-items:center;
-  background:transparent;
-}
-
-.album-text {
-  text-align:left;
-  
-}
-
-.album-title {
-  font-size:150%;
-  font-weight:700;
-    margin-bottom:8px;
-}
-
-.album-year {
-  font-size:90%;
-  color:white;
-  
-  margin-bottom:4px;
-}
-
-.album-count {
-  font-size:90%;
-  color:#ccc;
-}
+.album {  max-width:90%;  margin:20px auto 10px auto;  padding:0;}
+.cover {  width:100%;  max-width:310px;  border-radius:12px;  display:block;  margin:auto;  box-shadow:0 18px 38px rgba(0,0,0,0.55);}
+.album-info {width:55%; min-width:340px; margin-top:50px; margin-bottom:15px; margin:10px auto; display:flex; flex-wrap: wrap; justify-content:space-between; align-items:center; background:transparent;}
+.album-text {text-align:left;}
+.album-title {font-size:150%;  font-weight:700;    margin-bottom:8px;}
+.album-year {  font-size:90%;  color:white;  margin-bottom:4px;}
+.album-count {  font-size:90%;  color:#ccc;}
 
 /* BOTÓN REPRODUCIR TODO */
-.playall-btn {
-  white-space: nowrap;
-  flex-shrink: 1;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  padding:10px 15px;
-  border-radius:40px;
-  border:none;
-  cursor:pointer;
-  color:white;
-  font-weight:600;
-  font-size:70%;
-  background:transparent;
-  box-shadow:0 6px 14px rgba(0,0,0,0.45);
-  position: relative;
-  overflow: hidden;
-  }
-.playall-btn:active::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.15);
-  animation: flash .15s ease-out;
-}
-
-@keyframes flash {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
-
-.playall-btn svg {
-  width:20px;
-  height:20px;
-  fill:white;
-}
+.playall-btn {white-space: nowrap; flex-shrink: 1; display:flex; align-items:center; gap:5px; padding:10px 15px; border-radius:40px; border:none; cursor:pointer; color:white; font-weight:600; font-size:70%;
+  background:transparent; box-shadow:0 6px 14px rgba(0,0,0,0.45); position: relative; overflow: hidden;}
+.playall-btn:active::after {content: ""; position: absolute; inset: 0; background: rgba(255,255,255,0.15); animation: flash .15s ease-out;}
+@keyframes flash {from { opacity: 1; }  to   { opacity: 0; }}
+.playall-btn svg {width:20px; height:20px;  fill:white;}
 
 /* LISTADO DE CANCIONES */
-.track {
-  display:flex;
-  align-items:center;
-  padding:5px 8px;
-  margin:10px auto;
-  width:60%;
-  min-width:380px;
-  border-radius:0;
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,0.08);
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.02),
-    rgba(255,255,255,0.11)
-  );
-  opacity: 0;
-  transform: translateX(-70px);
-  animation: slideIn 0.6s ease-out forwards;
-}
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-.track:active::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.15);
-  animation: flash .15s ease-out;
-}
-
-.track-info {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex:1;
-}
-
-.track img {
-  width:55px;
-  height:55px;
-  border-radius:6px;
-  object-fit:cover;
-  box-shadow:0 6px 14px rgba(0,0,0,0.55);
-}
-
-.track-title {
-  font-weight:600;
-  font-size:95%;
-  margin-bottom:4px;
-}
-
-.track-sub {
-  font-size:80%;
-  color:#ccc;
-}
-
-.track-duration {
-  font-size:80%;
-  color:white;
-  margin-right:10px;
-}
+.track {display:flex; align-items:center; padding:5px 8px; margin:10px auto; width:60%; min-width:380px; border-radius:0; cursor:pointer; border:1px solid rgba(255,255,255,0.08); background:linear-gradient(
+    to bottom,  rgba(255,255,255,0.02), rgba(255,255,255,0.11)); opacity: 0; transform: translateX(-70px); animation: slideIn 0.6s ease-out forwards;}
+  @keyframes slideIn {to {opacity: 1; transform: translateX(0);}}
+.track:active::after {content: ""; position: absolute; inset: 0; background: rgba(255,255,255,0.15); animation: flash .15s ease-out;}
+.track-info {display:flex; align-items:center; gap:10px; flex:1;}
+.track img {width:55px; height:55px; border-radius:6px; object-fit:cover; box-shadow:0 6px 14px rgba(0,0,0,0.55);}
+.track-title {font-weight:600; font-size:95%; margin-bottom:4px;}
+.track-sub {font-size:80%; color:#ccc;}
+.track-duration {font-size:80%; color:white; margin-right:10px;}
 
 /* BOTÓN DESCARGA A */
-.download-btn {
-  width:36px;
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:transparent;
-  border:none;
-  cursor:pointer;
-}
-
-.download-btn svg {
-  width:26px;
-  height:26px;
-  stroke:white;
-  stroke-width:2;
-  fill:none;
-}
+.download-btn {width:30px; height:55px; display: flex; align-items:center; justify-content:center; background:transparent; border:none; cursor:pointer; z-index: 888;}
+.download-btn svg {width:26px; height:26px; stroke:white; stroke-width:2; fill:none;}
+  .download-btn:active svg { opacity: 0.4; transform: scale(0.9); transition: opacity 0.1s ease, transform 0.1s ease; }
 
 /* MINI‑PLAYER */
-#floating-player {
-  position:fixed;
-  bottom:-100%;
-  left:0;
-  width:100%;
-  background:transparent;
-  backdrop-filter:blur(14px);
-  padding:16px;
-  box-sizing:border-box;
-  border-top:1px solid rgba(255,255,255,0.1);
-  z-index: 999;
-  transition:
-    bottom .35s ease,
-    padding-top .35s ease;
-}
-
+#floating-player {position: fixed; bottom: -100%; left: 0; width: 100%; background: transparent; backdrop-filter: blur(14px); padding: 16px; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 999; transition: bottom .35s ease, padding-top .35s ease;}
   /* Flecha colapso centrada */
-#fp-collapse {
-  background:transparent;
-  border:none;
-  cursor:pointer;
-  padding:4px;
-  position:absolute;
-  top:4px;
-  left:50%;
-  transform:translateX(-50%);
-  display:none;
-}
-
-  #fp-collapse svg {
-  width:26px;
-  height:26px;
-  stroke:white;
-  stroke-width:2;
-  fill:none;
-}
-
+#fp-collapse {background:transparent; border:none; cursor:pointer; padding:4px; position:absolute; top:4px; left:50%; transform:translateX(-50%); display:none;}
+  #fp-collapse svg {width:26px; height:26px; stroke:white; stroke-width:2; fill:none;}
   /* Botón cerrar */
-#fp-close {
-  position:absolute;
-  right:8px;
-  top:8px;
-  background:transparent;
-  border:none;
-  color:white;
-  font-size:20px;
-  cursor:pointer;
-}
-
-.fp-content {
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-top:20px;
-}
-
+#fp-close {position:absolute; right:8px; top:8px; background:transparent; border:none; color:white; font-size:20px; cursor:pointer;}
+.fp-content {display:flex; align-items:center; gap:14px; margin-top:20px;}
   /* Portada mini-player */
-.fp-cover {
-  width:130px;
-  height:130px;
-  border-radius:8px;
-  object-fit:cover;
-  box-shadow:0 6px 14px rgba(0,0,0,0.55);
-}
+.fp-cover {width:130px; height:130px; border-radius:8px; object-fit:cover; box-shadow:0 6px 14px rgba(0,0,0,0.55);}
+.fp-text {flex:1;  text-align:left;}
+  .fp-cover, .fp-text { transition: all .35s ease; }
+#fp-title {  font-weight:700;  font-size:16px;  margin-bottom:4px;}
+.fp-sub1,.fp-sub2,.fp-sub3 {font-size:80%; color:#ccc; margin-bottom:2px;}
 
-.fp-text {
-  flex:1;
-  text-align:left;
-}
-    .fp-cover, .fp-text { transition: all .35s ease; }
-
-#fp-title {
-  font-weight:700;
-  font-size:16px;
-  margin-bottom:4px;
-}
-
-.fp-sub1,
-.fp-sub2,
-.fp-sub3 {
-  font-size:80%;
-  color:#ccc;
-  margin-bottom:2px;
-}
-
-/* CONTROLES */
-.fp-controls-row {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:35px;
-  margin-top:12px;
-  margin-bottom:18px;
-  position: relative;
-}
-
-.fp-btn {
-  background:transparent;
-  border:none;
-  cursor:pointer;
-}
-
-.fp-btn svg {
-  width:26px;
-  height:26px;
-  fill:white;
-  opacity:0.9;
-}
-
-.fp-btn.toggle.active svg {
-  fill:#ffd966;
-  stroke:#ffd966;
-  opacity:1;
-}
-
+  /* CONTROLES */
+.fp-controls-row {display:flex; justify-content:center; align-items:center; gap:35px; margin-top:18px; margin-bottom:18px; position: relative;}
+.fp-btn { background:transparent;  border:none;  cursor:pointer;}
+.fp-btn svg {  width:26px;  height:26px;  fill:white;  opacity:0.9;}
+.fp-btn.toggle.active svg {  fill:#ffd966;  stroke:#ffd966;  opacity:1;}
 /* PLAY CON CÍRCULO OSCURO */
-.fp-play-circle {
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:transparent;
-  box-shadow:0 6px 14px rgba(0,0,0,0.65);
-}
-
-.fp-play-circle svg {
-  width:28px;
-  height:28px;
-  fill:white;
-}
-
+.fp-play-circle {width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:transparent; box-shadow:0 6px 14px rgba(0,0,0,0.65);}
+.fp-play-circle svg { width:28px; height:28px; fill:white;}
 /* PROGRESO */
-#fp-progress-container {
-  width:100%;
-  height:8px;
-  background:rgba(255,255,255,0.12);
-  border-radius:4px;
-  margin-top:10px;
-  position:relative;
-  cursor:pointer;
-}
-
-#fp-progress {
-  height:100%;
-  width:0%;
-  background:rgba(255,255,255,0.8);
-}
-
-#fp-progress-thumb {
-  position:absolute;
-  top:50%;
-  left:0%;
-  transform:translate(-50%, -50%);
-  width:12px;
-  height:12px;
-  background:white;
-  border-radius:50%;
-}
-#floating-player .fp-content,
-#floating-player .fp-controls-row,
-#floating-player #fp-progress-container {
-  transition: all .35s ease;
-}
+#fp-progress-container {width:100%; height:8px; background:rgba(255,255,255,0.12); border-radius:4px; margin-top:10px; position:relative; cursor:pointer;}
+#fp-progress {height:100%; width:0%; background:rgba(255,255,255,0.8);}
+#fp-progress-thumb {position:absolute; top:50%; left:0%; transform:translate(-50%, -50%); width:12px; height:12px; background:white; border-radius:50%;}
+  #floating-player .fp-content,#floating-player .fp-controls-row,#floating-player #fp-progress-container {transition: all .35s ease;}
 /* EXPANDIDO */
-#floating-player.expanded {
-  padding-top: 40px;
-  border-radius: 20px 20px 0 0;
-  bottom: 0;
-}
-
-#floating-player.expanded #fp-collapse {
-  display:block;
-}
-
-#floating-player.expanded .fp-content {
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-
+#floating-player.expanded {padding-top: 40px; border-radius: 20px 20px 0 0;  bottom: 0;}
+#floating-player.expanded #fp-collapse {  display:block;}
+#floating-player.expanded .fp-content {flex-direction:column; align-items:center; text-align:center;}
   /* Portada expandida */
-#floating-player.expanded .fp-cover {
-  width:300px;
-  height:300px;
-  margin-bottom:10px;
-}
-
-#floating-player.expanded .fp-text {
-  text-align:center;
-}
-
-#floating-player.expanded .fp-controls-row {
-  margin-top:20px;
-}
-
-#floating-player.expanded #fp-progress-container {
-  margin-top:20px;
-}
-
+#floating-player.expanded .fp-cover {width:300px; height:300px; margin-bottom:10px;}
+#floating-player.expanded .fp-text {text-align:center;}
+#floating-player.expanded .fp-controls-row {margin-top:20px;}
+#floating-player.expanded #fp-progress-container {margin-top:20px;}
   /* Animaciones título */
 .fp-title-exit-left { animation:exitLeft .35s forwards; }
 .fp-title-enter-left { animation:enterLeft .35s forwards; }
 .fp-title-exit-right { animation:exitRight .35s forwards; }
 .fp-title-enter-right { animation:enterRight .35s forwards; }
-
 @keyframes exitLeft { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(-30px);} }
 @keyframes enterLeft { from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);} }
 @keyframes exitRight { from{opacity:1;transform:translateX(0);} to{opacity:0;transform:translateX(30px);} }
 @keyframes enterRight { from{opacity:0;transform:translateX(-30px);} to{opacity:1;transform:translateX(0);} }
-
-  .bottom-spacer {
-  height:320px;
-}
-
-
-  .back-btn {
-  position: fixed;
-  top: 18px;
-  left: 18px;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(6px);
-  border-radius: 50%;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.45);
-  cursor: pointer;
-  z-index: 9999;
-  transition: background .25s;
-}
-
-.back-btn:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-.back-btn svg {
-  width: 22px;
-  height: 22px;
-  stroke: white;
-  stroke-width: 2;
-  fill: none;
-}
+  .bottom-spacer { height:320px;}
+  .back-btn {position: fixed; top: 18px; left: 18px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+  border-radius: 50%; box-shadow: 0 6px 14px rgba(0,0,0,0.45); cursor: pointer; z-index: 9999; transition: background .25s;}
+.back-btn:hover {background: rgba(255,255,255,0.15);}
+.back-btn svg {width: 22px; height: 22px; stroke: white; stroke-width: 2;  fill: none;}
 </style>
 </head>
 
@@ -630,15 +280,18 @@ body {
 <script>
   /* ============================
    CONFIGURACIÓN POR ÁLBUM
-   ============================ */
+   ======================================================================================================CAMBIAR RUTA AUDIOS Y PORTADA ALBUM; colores RGB============================== */
 const audioBasePath = "../audio/Music_Stars_Shine_Bright/";
-const defaultCover  = "../img/portadaCelebration.webp";
+const defaultCover  = "../img/portadaMusicStars.webp";
+
 /* COLORES DEL ÁLBUM (RGB) */
 const c  = [78, 43, 176];   // color principal
 const c2 = [133, 39, 195];  // color secundario
 
 /* ===================================================================================================================================================================================== */
+
 document.querySelectorAll(".js-cover").forEach(img => {img.src = defaultCover;});
+
   /* ============================
    VARIABLES
    ============================ */
@@ -647,11 +300,9 @@ let currentIndex = -1;
 let repeat = false;
 let shuffle = false;
 let isDraggingProgress = false;
-
 const player = document.getElementById("player");
 const floatingPlayer = document.getElementById("floating-player");
 const fpTitle = document.getElementById("fp-title");
-const fpCover = document.getElementById("fp-cover");
 const fpPlayBtn = document.getElementById("fp-play");
 const fpPlayIcon = document.getElementById("fp-play-icon");
 const fpRepeatBtn = document.getElementById("fp-repeat");
@@ -664,9 +315,10 @@ const fpClose = document.getElementById("fp-close");
 const fpSub2 = document.querySelector(".fp-sub2");
 const fpSub3 = document.querySelector(".fp-sub3");
 const playAllBtn = document.getElementById("play-all");
-  
+
 setDynamicGradient();
-    /* ============================
+  
+  /* ============================
    PRECARGA AUTOMÁTICA DE AUDIOS
    ============================ */
 function precargarAudios() {
@@ -685,6 +337,10 @@ precargarAudios();
       el.style.animationDelay = `${i * 0.1}s`;
     });
   });
+
+
+  
+  
 /* CLICK EN CANCIONES */
 trackElements.forEach((trackEl, index) => {
   trackEl.addEventListener("click", () => playIndex(index, "forward"));
@@ -801,6 +457,7 @@ function setDynamicGradient() {
   document.body.style.background =
     `linear-gradient(to bottom, ${fon1}, ${fon2}, ${fon3})`;
 }
+
 
 /* PROGRESO */
 player.addEventListener("timeupdate", () => {
